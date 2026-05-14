@@ -1,0 +1,9 @@
+customtkinter
+yt-dlp
+demucs
+librosa
+soundfile
+numpy<2.0.0
+torch==2.1.2
+torchaudio==2.1.2
+pygame
