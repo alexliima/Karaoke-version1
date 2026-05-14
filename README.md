@@ -4,7 +4,7 @@ Remove o vocal de qualquer música do YouTube e transpõe o tom na hora.
 
 ## Requisitos
 
-- Python 3.10 ou 3.11 — [python.org](https://python.org/downloads/source)
+- Python 3.11.9 — [python.org](https://python.org/downloads/source)
 - FFmpeg — [baixar aqui](https://ffmpeg.org/download.html)
 
 ## Como usar
