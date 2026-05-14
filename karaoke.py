@@ -2,10 +2,10 @@ import os
 import sys
 import shutil
 
-# Caminho absoluto da pasta onde o script está
+# Caminho da pasta onde o script está
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# Configura FFmpeg
+# Caminho FFmpeg
 ffmpeg_path = os.path.join(BASE_DIR, "bin")
 os.environ["PATH"] += os.pathsep + ffmpeg_path
 os.environ["PYTHONUTF8"] = "1"
@@ -28,7 +28,7 @@ def limpar_arquivos():
     for caminho in pastas:
         if not os.path.exists(caminho):
             continue
-        for tentativa in range(3):          # tenta até 3x esperando o Windows soltar o handle
+        for tentativa in range(3):         
             try:
                 shutil.rmtree(caminho)
                 removidas.append(os.path.basename(caminho))
@@ -84,7 +84,7 @@ def baixar_audio(url, progress_callback=None):
         if linha.endswith(".wav") and os.path.exists(linha):
             return linha
 
-    # Fallback: arquivo .wav mais recente na pasta
+    # Fallback
     arquivos = [
         os.path.join(pasta_saida, f)
         for f in os.listdir(pasta_saida)
