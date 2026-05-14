@@ -1,6 +1,7 @@
 # Karaokê
 
 Remove o vocal de qualquer música do YouTube e transpõe o tom na hora.
+## obs.: SOMENTE WINDOWS
 
 ## Requisitos
 
