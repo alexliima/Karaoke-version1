@@ -25,13 +25,13 @@ ERROR    = "#ff4d8d"
 ctk.set_appearance_mode("dark")
 
 
-# ── Helpers ───────────────────────────────────────────────────────────────────
+# Helpers
 def fmt_time(s):
     s = max(0, int(s))
     return f"{s // 60:02d}:{s % 60:02d}"
 
 
-# ── TonSlider ─────────────────────────────────────────────────────────────────
+# TonSlider
 class TonSlider(ctk.CTkFrame):
     def __init__(self, master, **kw):
         super().__init__(master, fg_color="transparent", **kw)
@@ -103,7 +103,7 @@ class TonSlider(ctk.CTkFrame):
         return self._val
 
 
-# ── AudioPlayer ───────────────────────────────────────────────────────────────
+# AudioPlayer
 class AudioPlayer(ctk.CTkFrame):
     def __init__(self, master, **kw):
         super().__init__(
@@ -115,7 +115,7 @@ class AudioPlayer(ctk.CTkFrame):
         self._file = None
         self._playing = False
         self._duration = 0
-        self._pos = 0.0          # posição lógica em segundos
+        self._pos = 0.0          # posição (em segundos)
 
         self.columnconfigure(1, weight=1)
 
@@ -221,18 +221,18 @@ class AudioPlayer(ctk.CTkFrame):
                         text=f"{fmt_time(self._pos)} / {fmt_time(self._duration)}"
                     )
             else:
-                # Terminou naturalmente
+                # Terminou 
                 self._playing = False
                 self._btn.configure(text="▶")
 
         self.after(100, self._update_loop)
 
 
-# ── KaraokeApp ────────────────────────────────────────────────────────────────
+# KaraokeApp
 class KaraokeApp(ctk.CTk):
     def __init__(self):
         super().__init__()
-        self.title("Karaokê Pro")
+        self.title("Karaokê")
         self.geometry("740x820")
         self.minsize(680, 720)
         self.configure(fg_color=BG)
@@ -243,7 +243,7 @@ class KaraokeApp(ctk.CTk):
         self.columnconfigure(0, weight=1)
         self.rowconfigure(2, weight=1)
 
-        # ── Header ────────────────────────────────────────────────────────────
+        # Header
         header = ctk.CTkFrame(self, fg_color="transparent")
         header.grid(row=0, column=0, sticky="ew", padx=36, pady=(28, 0))
         header.columnconfigure(0, weight=1)
@@ -271,7 +271,7 @@ class KaraokeApp(ctk.CTk):
         sep = ctk.CTkFrame(self, fg_color=BORDER2, height=1)
         sep.grid(row=1, column=0, sticky="ew", padx=36, pady=(16, 0))
 
-        # ── Corpo ─────────────────────────────────────────────────────────────
+        # Corpo
         body = ctk.CTkScrollableFrame(self, fg_color="transparent", scrollbar_button_color=BORDER2)
         body.grid(row=2, column=0, sticky="nsew", padx=0, pady=0)
         body.columnconfigure(0, weight=1)
@@ -408,7 +408,7 @@ class KaraokeApp(ctk.CTk):
         )
         self._btn_nova.grid(row=1, column=2, padx=(6, 20), pady=(0, 20), sticky="ew")
 
-    # ── Lógica ─────────────────────────────────────────────────────────────────
+    # Lógica
     def _iniciar(self):
         url = self._url_entry.get().strip()
         if not url:
@@ -445,7 +445,7 @@ class KaraokeApp(ctk.CTk):
             "Isso apagará todas as músicas baixadas e processadas.\n\nContinuar?"
         ):
             try:
-                # 1) Para a música e libera o arquivo do pygame ANTES de apagar
+                # Para a música e libera o arquivo do pygame ANTES de apagar
                 self._player.stop()
                 pygame.mixer.music.unload()   # solta o handle do arquivo no Windows
                 pygame.mixer.quit()           # fecha o mixer completamente
